@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { trainSets } from './quadriceps.jsx'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>{Object.keys(trainSets)}</Text>
+      <Text>{trainSets["Quadríceps"][0].exercise}</Text>
     </View>
   );
 }

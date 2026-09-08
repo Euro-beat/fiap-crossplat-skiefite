@@ -1,12 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { trainSets } from './quadriceps.jsx'
+import { StyleSheet, View } from 'react-native';
+import { trainingSplit } from './trainingSplit.js'
+import ExerciseMain from './exerciseMain.jsx'
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{Object.keys(trainSets)}</Text>
-      <Text>{trainSets["Quadríceps"][0].exercise}</Text>
+      <ExerciseMain trainingSplitShow={trainingSplit['quadriceps']}/>{/* Opções disponíveis: (quadriceps, costasBiceps) */}
     </View>
   );
 }
@@ -15,7 +14,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });

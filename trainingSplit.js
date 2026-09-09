@@ -22,7 +22,7 @@ export const trainingSplit = {
             },
             {
                 id: "4",
-                exercise: "Leg Press 180",
+                exercise: "Leg Press 180°",
                 sets: 3,
                 reps: 15
             },

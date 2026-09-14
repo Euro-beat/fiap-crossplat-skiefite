@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import { trainingSplit } from './trainingSplit.js'
-import ExerciseMain from './exerciseMain.jsx'
+import ExerciseMain from './screens/exerciseMain.jsx'
 
 export default function App() {
   return (

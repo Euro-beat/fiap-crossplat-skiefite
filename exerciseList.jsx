@@ -6,14 +6,14 @@ passar o trainingSplit['quadriceps']['exercises'] direto no component.
 
 export default function ExerciseList({trainingSplitList}) {
   return (
-    <TouchableOpacity style={styles.trainingSplitCard} activeOpacity={0.7}>
+    <View style={styles.trainingSplitCard}>
         <View>
             <Text style={styles.cardSubtitle}>Séries: {trainingSplitList.sets} / Repetições: {trainingSplitList.reps}</Text>
             <Text style={styles.cardTitle}>{trainingSplitList.exercise}</Text>
         </View>
 
         <Ionicons name='arrow-forward' size={20}/>
-    </TouchableOpacity>
+    </View>
   );
 }
 

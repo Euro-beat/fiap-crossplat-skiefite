@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View, TouchableOpacity, Platform, StatusBar, FlatList } from 'react-native';
 import ExerciseList from '../exerciseList'
 import { Ionicons } from '@expo/vector-icons';
+
+import { trainingSplit } from '../trainingSplit'
+
 /* Ideia:
 passar o trainingSplit['quadriceps'] direto no component.
 */
 
-export default function ExerciseMain({trainingSplitShow}) {
+export default function ExerciseMain({route, navigation}) {
+  const { trainingSplitShow } = route.params;
+  
   return (
     <View style={styles.mainContainer}>
 
@@ -23,7 +28,7 @@ export default function ExerciseMain({trainingSplitShow}) {
             data={trainingSplitShow['exercises']}
             keyExtractor={(item) => item.id}
             renderItem={({item}) => (
-              <TouchableOpacity style={styles.trainingSplitCard} activeOpacity={0.7}>
+              <TouchableOpacity style={styles.trainingSplitCard} activeOpacity={0.7} onPress={() => navigation.navigate('ListaExercTeste', { trainingSplitShow: trainingSplit['costasBiceps'] })}>
                 <ExerciseList trainingSplitList={item}/>
               </TouchableOpacity>
             )}

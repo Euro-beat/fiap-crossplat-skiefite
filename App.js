@@ -1,61 +1,42 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet, View, ActivityIndicator, Text } from 'react-native';
-import { useEffect, useState } from 'react';
+import { StyleSheet, StatusBar } from 'react-native';
 
-/* import { trainingSplit } from './trainingSplit.js' */
 import ExerciseMain from './screens/exerciseMain.jsx'
+import HomePage from './screens/homePage.jsx';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  const [exercisesJson, setExercisesJson] = useState(null);
-
-  useEffect(() => {
-    async function getExercises() {
-      const response = await fetch("https://gist.githubusercontent.com/Euro-beat/8de4e6a7d08cc97c0b6d90c13ab3b088/raw/exercises.json");
-      const json = await response.json();
-      setExercisesJson(json);
-    }
-    getExercises();
-  }, []
-  );
-
-  if (!exercisesJson) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size={50} color="#2F6783" />
-        <Text style={styles.loadingText}>Carregando sua ficha de treinos...</Text>
-      </View>
-    );
-  }
-
-  console.log(exercisesJson['quadriceps']?.['title']);
-  console.log(exercisesJson['costasBiceps']);
-
-  /*
-  '?.' verifica se exercisesJson['quadriceps'] foi criado.
-  O react costuma rodar as coisas dobrado para ver o sincronismo, e a primeira dá undefined
-  */
-
+  /* <> => é tipo um <View stryle={{flex: 1}}> </View> */
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name='ListaExerc'
-          component={ExerciseMain}
-          options={{ headerShown: false }}
-          initialParams={{ trainingSplitShow: exercisesJson['quadriceps'] }} /* Opções disponíveis: (quadriceps, costasBiceps) */
-        />
-        <Stack.Screen
-          name='ListaExercTeste'
-          component={ExerciseMain}
-          options={{ title: exercisesJson['costasBiceps']?.['title'] }}
-          initialParams={{ trainingSplitShow: exercisesJson['costasBiceps'] }} /* Opções disponíveis: (quadriceps, costasBiceps) */
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <> 
+      <StatusBar
+      barStyle='light-content'
+      backgroundColor='transparent'
+      translucent={true}
+      />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: '#122631',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+          }}
+        >
+
+          <Stack.Screen
+            name='Lista de Exercícios'
+            component={HomePage}
+          >
+          </Stack.Screen>
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>    
   );
 }
 

@@ -6,7 +6,7 @@ export default function ExerciseList({trainingSplitList}) {
     <View style={styles.trainingSplitCard}>
         <View>
             <Text style={styles.cardSubtitle}>Séries: {trainingSplitList.sets} <Text style={styles.slashColor}>/</Text> Repetições: {trainingSplitList.reps}</Text>
-            <Text style={styles.cardTitle}>{trainingSplitList.exercise}</Text>
+            <Text style={styles.cardTitle}>{trainingSplitList.name}</Text>
         </View>
 
         <Ionicons name='arrow-forward' size={20}/>

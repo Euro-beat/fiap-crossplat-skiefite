@@ -5,55 +5,36 @@ import { useEffect, useState } from 'react';
 export default function HomePage() {
   const navigation = useNavigation(); 
 
-  const [exercisesJson, setExercisesJson] = useState(null);
+  const [appData, setappData] = useState(null);
   
     useEffect(() => {
       async function getExercises() {
-        const response = await fetch("https://gist.githubusercontent.com/Euro-beat/8de4e6a7d08cc97c0b6d90c13ab3b088/raw/exercises.json");
+        const response = await fetch("https://gist.githubusercontent.com/Euro-beat/9356acf9edc8507f9adeeba2981d8621/raw/skiefite.json");
         const json = await response.json();
-        setExercisesJson(json);
+        setappData(json);
       }
       getExercises();
       }, []
     );
-  
-    const [buttonsJson, setButtonsJson] = useState(null);
-  
-    useEffect(() => {
-      async function getButtons() {
-        const response = await fetch("https://gist.githubusercontent.com/Euro-beat/b40d667b483c42e051a74905bb20b24e/raw/exercisesButtons.json");
-        const json = await response.json();
-        setButtonsJson(json);
-      }
-      getButtons();
-      }, []
-    );
 
-    const [activeCategory, setActiveCategory] = useState('cat1');
+    const [activeCategory, setActiveCategory] = useState('cat1'); 
   
-    if (!exercisesJson || !buttonsJson) {
+    if (!appData) {
       return (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size={50} color="#2F6783" />
+          <ActivityIndicator size={50} color="#d21429" />
           <Text style={styles.loadingText}>Carregando sua lista de treinos...</Text>
         </View>
       );
     }
     
-    const exerciciosFiltrados = buttonsJson["homePageExercises"].filter(ex => ex.catId === activeCategory);
-  
-    /* console.log(exercisesJson['quadriceps']?.['title']);
-    console.log(exercisesJson['costasBiceps']);
-  
-    '?.' verifica se exercisesJson['quadriceps'] foi criado.
-    StrictMode força renderização dupla para validar efeitos colaterais antes da resposta assíncrona.
-    */
+    const exerciciosFiltrados = appData["homePageExercises"].filter(ex => ex.catId === activeCategory);
 
   return (
     <View style={styles.mainContainer}>
 
       <Image
-        source={{ uri: 'https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/YxrVhqeQncyMPduLglA9/pub/KzgKAE0h3Ly430Gjv2rX.webp' }}
+        source={{ uri: 'https://raw.githubusercontent.com/Euro-beat/fiap-crossplat-skiefite/refs/heads/main/assets/skyfit_homepage.png' }}
         style={styles.skiefiteLogo}
         resizeMode='contain'
       />
@@ -63,7 +44,7 @@ export default function HomePage() {
       <View style={{height: 80}}>
 
         <FlatList
-          data={buttonsJson["homePageCategories"]}
+          data={appData["homePageCategories"]}
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.horizontalButtonsContainer}
@@ -98,7 +79,7 @@ export default function HomePage() {
                 navigation.navigate(
                   'ExerciseMain',
                   {
-                    trainingSplitShow: exercisesJson['costasBiceps'],
+                    trainingSplitShow: appData['exercisesDatabase']['costasBiceps'],
                     screenTitle: item.name
                   }
                 )
@@ -118,7 +99,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'stretch',
-    padding: 10
+    padding: 20
   },
   loadingContainer: {
     flex: 1,
@@ -170,8 +151,6 @@ const styles = StyleSheet.create({
     color: '#ffffff',
   },
   verticalButtonsContainer: {
-    paddingHorizontal: 16,
-    paddingBottom: 24,
     gap: 15
   },
   verticalButton: {

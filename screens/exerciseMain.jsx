@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View, TouchableOpacity, Platform, StatusBar, FlatList } from 'react-native';
 import ExerciseList from '../exerciseList'
 
-import { trainingSplit } from '../trainingSplit'
-
-/* Ideia:
-passar o trainingSplit['quadriceps'] direto no component.
-*/
+import { useEffect } from 'react';
 
 export default function ExerciseMain({ route, navigation }) {
-  const { trainingSplitShow } = route.params;
+  const { trainingSplitShow, screenTitle } = route.params || {};
+
+  useEffect(() => {
+    if (screenTitle) {
+      navigation.setOptions({ title: screenTitle });
+    }
+  }, []
+);
 
   return (
     <View style={styles.mainContainer}>
@@ -18,8 +21,9 @@ export default function ExerciseMain({ route, navigation }) {
           <FlatList
             data={trainingSplitShow['exercises']}
             keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.trainingSplitContainer}
             renderItem={({item}) => (
-              <TouchableOpacity style={styles.trainingSplitCard} activeOpacity={0.7} onPress={() => navigation.navigate('ListaExercTeste', { trainingSplitShow: trainingSplit['costasBiceps'] })}>
+              <TouchableOpacity style={styles.trainingSplitCard} activeOpacity={0.7}>
                 <ExerciseList trainingSplitList={item}/>
               </TouchableOpacity>
             )}
@@ -58,10 +62,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
 
   },
-  backButton: {
-    color: '#2F6783',
-    fontWeight: 'bold',
-    fontSize: 18,
-    marginBottom: 20
+  trainingSplitContainer: {
+    gap: 15
+  },
+  trainingSplitCard: {
+    backgroundColor: '#ffffff',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#e2e8f0',
+    padding: 10,
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.05,
+    shadowRadius: 2,
+    elevation: 1,
   }
 });

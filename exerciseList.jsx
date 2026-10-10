@@ -1,14 +1,11 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-/* Ideia:
-passar o trainingSplit['quadriceps']['exercises'] direto no component.
-*/
 
 export default function ExerciseList({trainingSplitList}) {
   return (
     <View style={styles.trainingSplitCard}>
         <View>
-            <Text style={styles.cardSubtitle}>Séries: {trainingSplitList.sets} / Repetições: {trainingSplitList.reps}</Text>
+            <Text style={styles.cardSubtitle}>Séries: {trainingSplitList.sets} <Text style={styles.slashColor}>/</Text> Repetições: {trainingSplitList.reps}</Text>
             <Text style={styles.cardTitle}>{trainingSplitList.exercise}</Text>
         </View>
 
@@ -23,17 +20,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
 
-        backgroundColor: '#ebebeb',
-        borderRadius: 10,
-        padding: 10,
-        marginBottom: 5,
+        
     },
     cardSubtitle: {
-      color: '#2F6783',
+      color: '#002F6C',
       fontWeight: 'bold',
       fontSize: 15
     },
     cardTitle: {
         fontSize: 18
+    },
+    slashColor: {
+        color: '#d21429'
     }
 });

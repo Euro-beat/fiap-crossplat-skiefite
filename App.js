@@ -21,7 +21,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{
             headerStyle: {
-              backgroundColor: '#122631',
+              backgroundColor: '#002F6C',
             },
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
@@ -29,10 +29,15 @@ export default function App() {
         >
 
           <Stack.Screen
-            name='Lista de Exercícios'
+            name='HomePage'
             component={HomePage}
-          >
-          </Stack.Screen>
+            options={{ title: 'Lista de Treinos' }}
+          />
+
+          <Stack.Screen
+            name='ExerciseMain'
+            component={ExerciseMain}
+          />
           
         </Stack.Navigator>
       </NavigationContainer>

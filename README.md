@@ -1,7 +1,8 @@
 # Screenshots
-<div style="display: flex; justify-content: center;gap: 10%">
-  <img src="assets/homepage.jpg" alt="Tela 1 do App" width="15%">
-  <img src="assets/nextScreen.jpg" alt="Tela 2 do App" width="15%">
+
+<div align="center">
+  <img src="assets/homepage.jpg" alt="Tela 1 do App" width="256px">
+  <img src="assets/nextScreen.jpg" alt="Tela 2 do App" width="256px">
 </div>
 
 # CPAD checkpoint - FIAP
@@ -154,6 +155,6 @@ TODO
  - [GitHub Gist](https://gist.github.com/Euro-beat/9356acf9edc8507f9adeeba2981d8621)
 
 # Next features
- - [ ] Multi-user
+ - [ ] Multi-users
  - [ ] Offline persistence
  - [ ] Workouts descriptions with user input (file persistence?)

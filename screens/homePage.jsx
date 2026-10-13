@@ -79,7 +79,7 @@ export default function HomePage() {
                 navigation.navigate(
                   'ExerciseMain',
                   {
-                    trainingSplitShow: appData['exercisesDatabase']['costasBiceps'],
+                    trainingSplitShow: appData['exercisesDatabase'][item.value],
                     screenTitle: item.name
                   }
                 )
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
   },
   horizontalButtonsContainer: {
     flexGrow: 1,
-    gap: 20,
+    gap: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },

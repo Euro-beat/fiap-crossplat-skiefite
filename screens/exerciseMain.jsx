@@ -27,6 +27,12 @@ export default function ExerciseMain({ route, navigation }) {
                 <ExerciseList trainingSplitList={item}/>
               </TouchableOpacity>
             )}
+            ListHeaderComponent={
+              trainingSplitShow['warning'] !== "" ? (
+                <Text style={[styles.trainingSplitCard, styles.textWarning]}>{trainingSplitShow['warning'].toUpperCase()}</Text>
+              ) : null
+            }
+            showsVerticalScrollIndicator={false}
           />
         </View>
 
@@ -40,11 +46,18 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'stretch'
   },
+  textWarning: {
+    color: '#d21429',
+    borderWidth: 1.5,
+    borderColor: '#d21429',
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
   whiteContainer: {
-    margin: 20
+    margin: 20,
+    paddingBottom: 30
   },
   titleContainer: {
-
     width: '100%',
     height: 100,
     backgroundColor: '#122631',
@@ -53,17 +66,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
 
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, // Pesquisando sobre alinhar no topo, dica que a IA deu.
-
   },
   title: {
-
     color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 20,
-
   },
   trainingSplitContainer: {
-    gap: 15
+    gap: 15,
   },
   trainingSplitCard: {
     backgroundColor: '#ffffff',

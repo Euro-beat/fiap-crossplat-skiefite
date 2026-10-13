@@ -1,6 +1,8 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, StatusBar } from 'react-native';
+import * as NavigationBar from 'expo-navigation-bar';
+import { useEffect } from 'react';  
 
 import ExerciseMain from './screens/exerciseMain.jsx'
 import HomePage from './screens/homePage.jsx';
@@ -8,6 +10,10 @@ import HomePage from './screens/homePage.jsx';
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
+  useEffect(() => {
+    NavigationBar.setButtonStyleAsync("dark"); 
+  }, []);
 
   /* <> => é tipo um <View stryle={{flex: 1}}> </View> */
   return (
